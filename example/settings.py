@@ -133,11 +133,8 @@ STATICFILES_DIRS = [
 #Channel settings
 CHANNEL_LAYERS = {
    "default": {
-          "BACKEND": "asgi_redis.RedisChannelLayer",  # use redis backend
-          "CONFIG": {
-              "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],  # set redis address
-          },
-          "ROUTING": "django_channels_celery_tutorial.routing.channel_routing",  # load routing from our routing.py file
+          "BACKEND": "asgi_redis.ChannelLayer",  # use redis backend
+          "ROUTING": "example.routing.channel_routing",  # load routing from our routing.py file
     },
 }
 
