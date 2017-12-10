@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'jobs',
 ]
+
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -119,3 +122,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Channel settings
+CHANNEL_LAYERS = {
+   "default": {
+          "BACKEND": "asgi_redis.RedisChannelLayer",  # use redis backend
+          "CONFIG": {
+              "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],  # set redis address
+          },
+          "ROUTING": "django_channels_celery_tutorial.routing.channel_routing",  # load routing from our routing.py file
+    },
+}
+
+#Celery settings
+BROKER_URL = 'redis://localhost:6379/0'  # our redis address
+#Use json format for everything
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
