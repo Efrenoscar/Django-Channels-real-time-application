@@ -133,7 +133,7 @@ STATICFILES_DIRS = [
 #Channel settings
 CHANNEL_LAYERS = {
    "default": {
-          "BACKEND": "asgi_redis.ChannelLayer",  # use redis backend
+          "BACKEND": "asgiref.inmemory.ChannelLayer",  # use redis backend
           "ROUTING": "example.routing.channel_routing",  # load routing from our routing.py file
     },
 }
