@@ -1,1 +1,3 @@
-# channels-and-celery
+# Django-Channels
+realtime application
+
